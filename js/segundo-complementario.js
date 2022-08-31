@@ -4,7 +4,15 @@ class Cliente{
         this.precioProducto = precioProducto;
         this.cantidadDeProductos = cantidadDeProductos;
         this.cuotaProducto = cuotaProducto;
-        
+        this.cuotaMensual = "";
+        this.precioFinal = "";
+    }
+    setCuotaMensual(cuotaMensual){
+       return this.cuotaMensual = cuotaMensual
+      
+    }
+    setPrecioFinal(precioFinal){
+        return this.precioFinal = precioFinal
     }
 }
 
@@ -35,12 +43,18 @@ function precioEnCuotas(){
        let interesesEn6Cuotas = (precioTotal(precioProducto, cantidadDeProductos) * 5) / 100;
        let precioFinal = precioTotal(precioProducto, cantidadDeProductos) + agregadoDeIva + interesesEn6Cuotas;
       alert("El precio final iva e intereces incluidos es de " + producto + " es de $" + precioFinal + " que disfrute su compra");
+      let cuotaMensual = precioFinal / cuotaProducto
+      nuevoCliente.setCuotaMensual(cuotaMensual);
+      nuevoCliente.setPrecioFinal(precioFinal);
       return(`Su cuota mensual de ${producto} es de \$ ${precioFinal / cuotaProducto}`);
    }
    else if (cuotaProducto == 12){
        let interesesEn12Cuotas = (precioTotal(precioProducto, cantidadDeProductos) * 10 ) / 100; 
        let precioFinal = precioTotal(precioProducto, cantidadDeProductos) + agregadoDeIva + interesesEn12Cuotas;
        alert("El precio final iva e intereces incluidos de " + producto + " es de $" + precioFinal + " que disfrute su compra");
+       let cuotaMensual = precioFinal / cuotaProducto
+      nuevoCliente.setCuotaMensual(cuotaMensual);
+      nuevoCliente.setPrecioFinal(precioFinal);
        return(`Su cuota mensual de ${producto} es de \$ ${precioFinal / cuotaProducto}`);
 
    }
@@ -49,6 +63,9 @@ function precioEnCuotas(){
        let interesesEn18Cuotas = (precioTotal(precioProducto, cantidadDeProductos) * 15) / 100;  
        let precioFinal = precioTotal(precioProducto, cantidadDeProductos) + agregadoDeIva + interesesEn18Cuotas;
        alert("El precio final iva e intereces incluidos de " + producto + " es de $" + precioFinal + " que disfrute su compra");
+       let cuotaMensual = precioFinal / cuotaProducto
+      nuevoCliente.setCuotaMensual(cuotaMensual);
+      nuevoCliente.setPrecioFinal(precioFinal);
     //   augus visual me sugirio modificar los return por como quedaron ahora  asi que los puse a todos iguales 
        return(`Su cuota mensual de ${producto} es de \$ ${precioFinal / cuotaProducto}`);
    }
@@ -56,6 +73,9 @@ function precioEnCuotas(){
        let interesesEn24Cuotas = (precioTotal(precioProducto, cantidadDeProductos) * 20) / 100;
        let precioFinal = precioTotal(precioProducto, cantidadDeProductos) + agregadoDeIva + interesesEn24Cuotas;
        alert("El precio final iva e intereces incluidos de " + producto + " es de $" + precioFinal + " que disfrute su compra");
+       let cuotaMensual = precioFinal / cuotaProducto
+      nuevoCliente.setCuotaMensual(cuotaMensual);
+      nuevoCliente.setPrecioFinal(precioFinal);
        return(`Su cuota mensual de ${producto} es de \$ ${precioFinal / cuotaProducto}`);
 
    }
@@ -64,19 +84,21 @@ function precioEnCuotas(){
        console.log("El texto/numero ingresado es invalido, vuelva a intentarlo");
     }
 }
-console.log(precioEnCuotas());
+// console.log(precioEnCuotas());
 
 alert(precioEnCuotas());
 }
 
-for(let cliente of listaCliente){
+listaCliente.forEach((cliente)=>{
     console.log("<--------->")
     console.log("Producto " , cliente.producto);
     console.log("Precio " , cliente.precioProducto);
     console.log("Cantidad " , cliente.cantidadDeProductos);
     console.log("Cuotas " , cliente.cuotaProducto);
-    // console.log("el precio de la cuota es: " cliente.precioEnCuotas);
-}
+    console.log("Precio cuota " , cliente.cuotaMensual);
+    console.log("Precio final " , cliente.precioFinal);
+})
+
 
 console.log(listaCliente);
 
